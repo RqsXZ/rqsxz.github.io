@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <title>QR Code Label</title>
 
-  <!-- QR Code library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <style>
     @page {
-      size: auto;
       margin: 0;
     }
 
@@ -19,13 +17,12 @@
 
     body {
       margin: 0;
-      padding: 0;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
     }
 
     .label {
@@ -36,29 +33,43 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
 
-      /* visual clean / industrial */
-      border-radius: 6px;
       background: #fff;
     }
 
+    .header {
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #444;
+    }
+
     #qrcode {
-      margin-bottom: 6mm;
+      margin: 4mm 0;
     }
 
     .code-text {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.4px;
       text-align: center;
       word-break: break-all;
     }
 
-    .subtitle {
-      font-size: 10px;
-      color: #555;
+    .divider {
+      width: 40%;
+      height: 1px;
+      background: #000;
+      opacity: 0.15;
       margin-top: 2mm;
+    }
+
+    .footer {
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #666;
     }
 
     @media print {
@@ -71,9 +82,17 @@
 <body>
 
   <div class="label">
+
+    <div class="header">Scan para Identificação</div>
+
     <div id="qrcode"></div>
+
     <div class="code-text" id="codeText"></div>
-    <div class="subtitle">Scan para identificação</div>
+
+    <div class="divider"></div>
+
+    <div class="footer">QR Code Seguro</div>
+
   </div>
 
   <script>
@@ -89,8 +108,8 @@
 
     new QRCode(document.getElementById('qrcode'), {
       text: value,
-      width: 220,
-      height: 220,
+      width: 240,
+      height: 240,
       correctLevel: QRCode.CorrectLevel.H
     });
 
